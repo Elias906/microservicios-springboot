@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://example.com/proveedor"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             targetNamespace="http://example.com/proveedor"
+             name="ProveedorService">
+    <types>
+        <xsd:schema targetNamespace="http://example.com/proveedor">
+            <xsd:element name="getProveedorRequest">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="id" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="getProveedorResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="result" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:schema>
+    </types>
+    <message name="getProveedorRequest">
+        <part name="parameters" element="tns:getProveedorRequest"/>
+    </message>
+    <message name="getProveedorResponse">
+        <part name="parameters" element="tns:getProveedorResponse"/>
+    </message>
+    <portType name="ProveedorPortType">
+        <operation name="getProveedor">
+            <input message="tns:getProveedorRequest"/>
+            <output message="tns:getProveedorResponse"/>
+        </operation>
+    </portType>
+    <binding name="ProveedorBinding" type="tns:ProveedorPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="getProveedor">
+            <soap:operation soapAction="getProveedor"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="ProveedorService">
+        <port name="ProveedorPort" binding="tns:ProveedorBinding">
+            <soap:address location="http://localhost:8080/ws/proveedor"/>
+        </port>
+    </service>
+</definitions>

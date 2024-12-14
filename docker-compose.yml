@@ -1,0 +1,43 @@
+version: '3'
+services:
+  ### MySQL database for clientes
+  db-clientes:
+    container_name: db-clientes
+    image: mysql:8.0.33
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ms_clientes
+      MYSQL_USER: root
+      MYSQL_PASSWORD:
+      MYSQL_ROOT_PASSWORD:
+    ports:
+      - 3306:3306
+    expose:
+      - 3306
+  ### Postgresql database for Insumos
+  db-insumos:
+    container_name: db-insumos
+    image: postgres:15.2
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ms_insumos
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+    ports:
+      - 5432:5432
+    expose:
+      - 5432
+    command: -p 5432
+### MONGODB database for proveedores
+  db-proveedores:
+    container_name: db-proveedores
+    image: mongo
+    restart: unless-stopped
+    ports:
+      - 27017:27017
+    volumes:
+      - data:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=
+      - MONGO_INITDB_ROOT_PASSWORD=
+

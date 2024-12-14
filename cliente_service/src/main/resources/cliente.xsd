@@ -1,0 +1,45 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.example.com/cliente"
+           xmlns="http://www.example.com/proveedor"
+           elementFormDefault="qualified">
+
+    <xs:element name="getAllClientesRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="page" type="xs:int" nillable="true" minOccurs="0"/>
+                <xs:element name="size" type="xs:int" nillable="true" minOccurs="0"/>
+                <xs:element name="filter" type="xs:string" nillable="true" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getAllClientesResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <!-- Referencia a una lista de ClienteResponse -->
+                <xs:element name="cliente" type="ClienteResponse" maxOccurs="unbounded"/>
+                <xs:element name="totalPages" type="xs:int"/>
+                <xs:element name="totalElements" type="xs:long"/>
+                <xs:element name="currentPage" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Tipo complejo de ClienteResponse -->
+    <xs:complexType name="ClienteResponse">
+        <xs:sequence>
+            <xs:element name="id" type="xs:string"/>
+            <xs:element name="tipoCliente" type="xs:string"/>
+            <xs:element name="tipoDocumento" type="xs:string"/>
+            <xs:element name="distrito" type="xs:string"/>
+            <xs:element name="apellidoPaterno" type="xs:string"/>
+            <xs:element name="apellidoMaterno" type="xs:string"/>
+            <xs:element name="nroDocumento" type="xs:string"/>
+            <xs:element name="direccion" type="xs:string"/>
+            <xs:element name="celular" type="xs:string"/>
+            <xs:element name="fechaRegistro" type="xs:dateTime"/>
+            <xs:element name="fechaEditado" type="xs:dateTime"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

@@ -1,0 +1,42 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.example.com/proveedor"
+           xmlns="http://www.example.com/proveedor"
+           elementFormDefault="qualified">
+
+    <xs:element name="getAllProveedoresRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="page" type="xs:int" nillable="true" minOccurs="0"/>
+                <xs:element name="size" type="xs:int" nillable="true" minOccurs="0"/>
+                <xs:element name="filter" type="xs:string" nillable="true" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getAllProveedoresResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <!-- Referencia a una lista de ProveedorResponse -->
+                <xs:element name="proveedor" type="ProveedorResponse" maxOccurs="unbounded"/>
+                <xs:element name="totalPages" type="xs:int"/>
+                <xs:element name="totalElements" type="xs:long"/>
+                <xs:element name="currentPage" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Tipo complejo de ProveedorResponse -->
+    <xs:complexType name="ProveedorResponse">
+        <xs:sequence>
+            <xs:element name="idProveedor" type="xs:string"/>
+            <xs:element name="nombreProveedor" type="xs:string"/>
+            <xs:element name="ruc" type="xs:string"/>
+            <xs:element name="direccion" type="xs:string"/>
+            <xs:element name="celular" type="xs:string"/>
+            <xs:element name="estadoProveedor" type="xs:string"/>
+            <xs:element name="fechaRegistro" type="xs:dateTime"/>
+            <xs:element name="fechaEditado" type="xs:dateTime"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>
